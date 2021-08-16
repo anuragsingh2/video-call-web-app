@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { setIsRoomHost } from "../store/actions";
+import JoinRoomContent from "./JoinRoomContent";
 import "./JoinRoomPage.css";
+import JoinRoomTitle from "./JoinRoomTitle";
 
 const JoinRoomPage = (props) => {
   const { setIsRoomHostAction, isRoomHost } = props;
@@ -17,7 +19,14 @@ const JoinRoomPage = (props) => {
     }
   }, []);
 
-  return <div>JoinRoomPage</div>;
+  return (
+    <div className="join_room_page_container">
+      <div className="join_room_page_panel">
+        <JoinRoomTitle isRoomHost={isRoomHost} />
+        <JoinRoomContent />
+      </div>
+    </div>
+  );
 };
 
 const mapStoreStateToProps = (state) => {
