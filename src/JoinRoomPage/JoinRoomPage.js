@@ -17,7 +17,7 @@ const JoinRoomPage = (props) => {
       //change information about it in our store.
       setIsRoomHostAction(true);
     }
-  }, []);
+  }, [search, setIsRoomHostAction]);
 
   return (
     <div className="join_room_page_container">

@@ -8,12 +8,12 @@ import "./IntroductionPage.css";
 const IntroductionPage = ({ setIsRoomHostAction }) => {
   useEffect(() => {
     setIsRoomHostAction(false);
-  }, []);
+  }, [setIsRoomHostAction]);
 
   return (
     <div className="introduction_page_container">
       <div className="introduction_page_panel">
-        <img src={logo} className="introduction_page_image" />
+        <img src={logo} className="introduction_page_image" alt="logo" />
         <ConnectingButtons />
       </div>
     </div>
