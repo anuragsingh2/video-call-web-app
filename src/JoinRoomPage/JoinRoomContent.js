@@ -11,6 +11,7 @@ import OnlyWithAudioCheckbox from "./OnlyWithAudioCheckbox";
 import RoomNotFoundMessage from "./RoomNotFoundMessage";
 import { useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { checkIfRoomExists } from "../utils/twilioUtils";
 
 const JoinRoomContent = (props) => {
   const {
@@ -26,10 +27,16 @@ const JoinRoomContent = (props) => {
 
   const history = useHistory();
 
-  const handleJoinToRoom = () => {
+  const handleJoinToRoom = async () => {
     setIdentityAction(nameValue);
     if (!isRoomHost) {
-      //check if room exists and if yes join
+      const roomExists = await checkIfRoomExists(roomIdValue);
+      if (roomExists) {
+        setRoomId(roomIdValue);
+        history.push("/room");
+      } else {
+        setShowRoomNotFoundMessage(true);
+      }
     } else {
       setRoomIdAction(uuidv4());
       history.push("/room");
