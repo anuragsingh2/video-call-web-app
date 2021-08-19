@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import CameraButtonImg from "../../resources/images/camera.svg";
+import CameraButtonImgOff from "../../resources/images/cameraOff.svg";
 
-const CameraButton = () => {
-  return <div></div>;
+const CameraButton = ({ room }) => {
+  const [isLocalVideoTrackDisabled, setIsLocalVideoTrackDisabled] =
+    useState(false);
+
+  const handleCameraButtonPressed = () => {
+    isLocalVideoTrackDisabled ? startVideo() : stopVideo();
+
+    setIsLocalVideoTrackDisabled(!isLocalVideoTrackDisabled);
+  };
+
+  const startVideo = () => {
+    //start sending back video stream to other users
+  };
+
+  const stopVideo = () => {
+    // stop sending camera stream to other users
+  };
+
+  return (
+    <div className="video_button_container">
+      <img
+        src={isLocalVideoTrackDisabled ? CameraButtonImgOff : CameraButtonImg}
+        onClick={handleCameraButtonPressed}
+      />
+    </div>
+  );
 };
 
 export default CameraButton;
