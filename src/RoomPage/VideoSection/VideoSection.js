@@ -7,7 +7,7 @@ const VideoSection = () => {
 
   return (
     <div className="video_section_container">
-      <Videos />
+      <Videos room={room} setRoom={setRoom} />
       <VideoButtons room={room} setRoom={setRoom} />
     </div>
   );

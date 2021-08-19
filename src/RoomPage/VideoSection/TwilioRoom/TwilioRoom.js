@@ -1,7 +1,7 @@
 import React from "react";
 
 const TwilioRoom = () => {
-  return <div></div>;
+  return <div>Twilio Room</div>;
 };
 
 export default TwilioRoom;
