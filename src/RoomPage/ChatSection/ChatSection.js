@@ -7,8 +7,8 @@ const ChatSection = () => {
   return (
     <div className="chat_section_container">
       <ChatLabel />
-      <NewMessage />
       <Messages />
+      <NewMessage />
     </div>
   );
 };
