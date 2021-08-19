@@ -5,6 +5,7 @@ const initialState = {
   isRoomHost: false,
   connectOnlyWithAudio: false,
   roomId: null,
+  twilioAccessToken: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -28,6 +29,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         roomId: action.roomId,
+      };
+    case Actions.SET_TWILIO_ACCESS_TOKEN:
+      return {
+        ...state,
+        twilioAccessToken: action.token,
       };
     default:
       return state;
