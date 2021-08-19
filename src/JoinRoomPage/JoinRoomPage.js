@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { setIsRoomHost } from "../store/actions";
 import JoinRoomContent from "./JoinRoomContent";
 import "./JoinRoomPage.css";
 import JoinRoomTitle from "./JoinRoomTitle";
+import LoadingOverlay from "./LoadingOverlay";
 
 const JoinRoomPage = (props) => {
   const { setIsRoomHostAction, isRoomHost } = props;
@@ -14,16 +15,18 @@ const JoinRoomPage = (props) => {
   useEffect(() => {
     const isRoomHost = new URLSearchParams(search).get("host");
     if (isRoomHost) {
-      //change information about it in our store.
       setIsRoomHostAction(true);
     }
   }, [search, setIsRoomHostAction]);
+
+  const [showLoadingOverlay, setShowLoadingOverlay] = useState(false);
 
   return (
     <div className="join_room_page_container">
       <div className="join_room_page_panel">
         <JoinRoomTitle isRoomHost={isRoomHost} />
-        <JoinRoomContent />
+        <JoinRoomContent setShowLoadingOverlay={setShowLoadingOverlay} />
+        {showLoadingOverlay && <LoadingOverlay />}
       </div>
     </div>
   );
