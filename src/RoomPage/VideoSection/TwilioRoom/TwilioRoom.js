@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { setParticipants } from "../../../store/actions";
 import { store } from "../../../store/store";
+import Participant from "./Participant";
 
 class TwilioRoom extends Component {
   constructor(props) {
@@ -67,7 +68,25 @@ class TwilioRoom extends Component {
   }
 
   render() {
-    return <div>Participants</div>;
+    return (
+      <div className="room">
+        <div className="participants">
+          <Participant
+            key={this.props.room.localParticipant.identity}
+            localParticipant
+            participant={this.props.room.localParticipant}
+          />
+          {this.state.remoteParticipants.map((participant) => {
+            return (
+              <Participant
+                key={participant.identity}
+                participant={participant}
+              />
+            );
+          })}
+        </div>
+      </div>
+    );
   }
 }
 

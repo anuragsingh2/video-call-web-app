@@ -12,10 +12,16 @@ const MicButton = () => {
 
   const mute = () => {
     // mute our microphone so other users will not be able to hear us
+    room.localParticipant.audioTracks.forEach((localAudioTrackPublication) => {
+      localAudioTrackPublication.track.disable();
+    });
   };
 
   const unmute = () => {
     // turn on mic back
+    room.localParticipant.audioTracks.forEach((localAudioTrackPublication) => {
+      localAudioTrackPublication.track.enable();
+    });
   };
 
   return (
