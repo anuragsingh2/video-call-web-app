@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MicButtonImg from "../../resources/images/mic.svg";
 import MicButtonImgOff from "../../resources/images/micOff.svg";
 
-const MicButton = () => {
+const MicButton = ({ room }) => {
   const [isMicMuted, setIsMicMuted] = useState(false);
 
   const handleMicButtonPressed = () => {
