@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { LocalAudioTrack } from "twilio-video";
+import { LocalVideoTrack } from "twilio-video";
 import SwitchImg from "../../resources/images/switchToScreenSharing.svg";
 import LocalScreenSharingPreview from "./LocalScreenSharingPreview";
 
@@ -16,7 +16,7 @@ const SwitchToScreenSharingButton = ({ room }) => {
         .then((stream) => {
           setScreenShareStream(stream);
           setIsScreenSharingActive(true);
-          const screenTrack = new new LocalAudioTrack(
+          const screenTrack = new new LocalVideoTrack(
             stream.getVideoTracks()[0],
             {
               name: "screen-share-track",
