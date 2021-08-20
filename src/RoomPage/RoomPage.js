@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "./RoomPage.css";
 import ParticipantsSection from "./ParticipantsSection/ParticipantsSection";
 import VideoSection from "./VideoSection/VideoSection";
@@ -9,10 +10,16 @@ import { getTokenFromTwilio } from "../utils/twilioUtils";
 import Overlay from "./VideoSection/Overlay";
 
 const RoomPage = (props) => {
-  const { identity, setTwilioAccessTokenAction, showOverlay } = props;
+  const { identity, roomId, setTwilioAccessTokenAction, showOverlay } = props;
+
+  const history = useHistory();
 
   useEffect(() => {
-    getTokenFromTwilio(setTwilioAccessTokenAction, identity);
+    if (!identity || !roomId) {
+      history.push("/");
+    } else {
+      getTokenFromTwilio(setTwilioAccessTokenAction, identity);
+    }
   }, []);
 
   return (
